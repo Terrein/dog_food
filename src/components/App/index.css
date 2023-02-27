@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +40,25 @@
 
 .result {
   font-size: 45px;
+}
+
+.sortBtn {
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  border-radius: 55px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color .3s;
+  color: currentColor;
+}
+
+.sortBtn_active {
+  background-color: #FFE44D;
+}
+
+.sortBtn_active :hover {
+  background-color: #FFAA0D;
+  color: #F44336;
 }

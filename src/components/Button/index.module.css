@@ -7,12 +7,15 @@
 	text-decoration: none;
 	display: inline-block;
 	transition: background-color .3s;
-    color: currentColor;
+	color: currentColor;
+	margin-right: 10px;
+	margin-top: 10px;
 }
 
 .primary {
 	background-color: #FFE44D;
 }
+
 .primary:hover {
 	background-color: #FFAA0D;
 	color: #F44336;
@@ -21,6 +24,7 @@
 .secondary {
 	background-color: transparent;
 }
+
 .secondary:hover {
 	color: #F44336;
 }
