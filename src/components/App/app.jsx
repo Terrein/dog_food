@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import CardList from '../CardList/card-list';
 import Footer from '../Footer/footer';
 import Header from '../Header/header';
 import Logo from '../Logo/logo';
 import Search from '../Search/search';
-import Sort from '../Sort/sort';
 import './index.css';
 import SeachInfo from '../SeachInfo';
 import Button from '../Button/button';
@@ -23,7 +22,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentUser, setCurrentUser] = useState(null)
   const debounceSearchQuery = useDebounce(searchQuery, 300)
-
+  const inputEl = useRef(null)
 
   const handleRequest = () => {
     api.search(debounceSearchQuery)
@@ -94,12 +93,15 @@ function App() {
       ASCSort()
       setSortName('По возрастанию')
     } else {
+      // PriceDESC
       DESCSort()
       setSortName('По убыванию')
     }
   }
   const hadleCancelSort = () => {
     setCards(JSON.parse(localStorage.getItem('defaultValue')))
+    setSearchQuery('')
+    inputEl.current.value = null
   }
 
   return (
@@ -115,7 +117,7 @@ function App() {
           <Route path='/' element={
             <>
               <SeachInfo searchCount={cards.length} searchText={searchQuery} />
-              <Search onSubmit={handleFormSubmit} onInput={handleInputChange} />
+              <Search ref={inputEl} onSubmit={handleFormSubmit} onInput={handleInputChange} />
               <Button onClick={hadleSort} type={'primary'}>{sortName}</Button>
               <Button onClick={hadleCancelSort} type={'primary'}>Сбросить фильтр</Button>
               <div className='content__cards'>
